@@ -1,7 +1,7 @@
 import streamlit as st
 from streamlit_extras.stylable_container import stylable_container
 
-st.title("Markov")
+st.title("Markov Trading")
 
 # GET ALL TICKER SYMBOLS
 text = open("assets/stocks_clean.txt", "r")
