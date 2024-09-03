@@ -4,6 +4,18 @@ from streamlit_extras.stylable_container import stylable_container
 
 st.title("Markov Trading")
 
+string = """
+$$
+\begin{bmatrix}
+P(Up \to Up) & P(Up \to Neutral) & P(Up \to Down)\\
+P(Neutral \to Up) & P(Neutral \to Neutral) & P(Neutral \to Down)\\
+P(Down \to Up) & P(Down \to Neutral) & P(Down \to Down)
+\end{bmatrix}
+$$
+"""
+
+st.write(string)
+
 # GET ALL TICKER SYMBOLS
 text = open("assets/stocks_clean.txt", "r")
 all_stocks = text.read().split("|")
