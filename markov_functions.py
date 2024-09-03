@@ -68,24 +68,7 @@ def create_transition_matrix(stock):
 
     return transition_matrix
 
-def run_simulation(amount, premium, shares, stock, threshold, interval="1d", verbose=False):
-
-    """
-    Simulates the execution of the strategy within an options trading environment.
-
-    Args:
-        amount (int): The initial capital available for investment.
-        premium (int): The premium price for each option contract.
-        shares (int): The number of shares per option contract to trade.
-        stock (pd.DataFrame): Historical stock data used for simulation. The DataFrame should be from Yahoo Finance.
-        threshold (float): The probability threshold for making a trade decision. Trades are executed when this threshold is met or exceeded.
-        interval (str): The time interval between trades, specified in days. Valid options are '1d', '2d', '5d', or '10d'.
-        verbose (bool): If True, detailed information about the simulation is shown.
-
-    Returns:
-        None: The function displays a plot of the simulated trades and their corresponding expected returns.
-    """
-
+def run_simulation(amount, premium, shares, stock, threshold, interval="1d"):
     # Initialize trading variables
     initial_amount = amount
     total_amount = amount
