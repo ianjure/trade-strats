@@ -1,9 +1,7 @@
 import streamlit as st
 import yfinance as yf
 from streamlit_extras.stylable_container import stylable_container
-from preprocess import preprocess
-from matrix import create_transition_matrix
-from simulate import run_simulation
+from markov_functions import preprocess, create_transition_matrix, run_simulation
 
 st.title("Markov Trading")
 
