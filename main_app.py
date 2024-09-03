@@ -2,6 +2,6 @@ import streamlit as st
 
 st.title("Main Menu")
 
-st.page_link("main_app.py", label="Home", icon="🏠"),
-st.page_link("markov/markov_app.py", label="Markov", icon="1️⃣"),
-st.page_link("mean-reversion/meanrev_app.py", label="Mean Reversion", icon="🔥")
+st.Page(page="main_app.py", title="Home", icon="🏠"),
+st.Page(page="markov/markov_app.py", title="Markov", icon="1️⃣"),
+st.Page(page="mean-reversion/meanrev_app.py", title="Mean Reversion", icon="🔥")
