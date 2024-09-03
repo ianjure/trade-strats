@@ -79,6 +79,6 @@ if predict_btn:
         #st.dataframe(transition_matrix)
 
         if verbose == "True":
-            run_simulation(amount=amount, premium=premium, shares=shares, stock=stock, threshold=threshold, interval=interval, verbose=True)
+            st.write(run_simulation(amount=amount, premium=premium, shares=shares, stock=stock, threshold=threshold, interval=interval, verbose=True))
         else:
             run_simulation(amount=amount, premium=premium, shares=shares, stock=stock, threshold=threshold, interval=interval, verbose=False)
