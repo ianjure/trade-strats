@@ -238,33 +238,4 @@ def run_simulation(amount, premium, shares, stock, threshold, interval="1d", ver
                     # Update trade status
                     trade_status["Win"] += 1
 
-    # Show the trade actions
-    if verbose:
-
-        ax.annotate(f'Buy: {trade_actions["Buy"]}', xy=(20, 370), xycoords='axes pixels', fontsize=12, ha='left', va='top')
-        ax.annotate(f'Hold: {trade_actions["Hold"]}', xy=(20, 350), xycoords='axes pixels', fontsize=12, ha='left', va='top')
-        ax.annotate(f'Sell: {trade_actions["Sell"]}', xy=(20, 330), xycoords='axes pixels', fontsize=12, ha='left', va='top')
-        ax.annotate(f'Total Actions: {trade_actions["Total Actions"]}', xy=(20, 310), xycoords='axes pixels', fontsize=12, ha='left', va='top')
-
-        if trade_status["Win"] == 0 and trade_status["Lose"] == 0 :
-            ax.annotate(f'Win Rate: 0%', xy=(20, 270), xycoords='axes pixels', fontsize=12, ha='left', va='top')
-            ax.annotate(f'Total Profit: {round(total_amount - initial_amount, 2)}$', xy=(20, 250), xycoords='axes pixels', fontsize=12, ha='left', va='top')
-            ax.annotate(f'Total Amount: {round(total_amount, 2)}$', xy=(20, 230), xycoords='axes pixels', fontsize=12, ha='left', va='top')
-        else:
-            ax.annotate(f'Win Rate: {round((trade_status["Win"] / (trade_status["Win"] + trade_status["Lose"])) * 100, 2)}%', xy=(20, 270), xycoords='axes pixels', fontsize=12, ha='left', va='top')
-            ax.annotate(f'Total Profit: {round(total_amount - initial_amount, 2)}$', xy=(20, 250), xycoords='axes pixels', fontsize=12, ha='left', va='top')
-            ax.annotate(f'Total Amount: {round(total_amount, 2)}$', xy=(20, 230), xycoords='axes pixels', fontsize=12, ha='left', va='top')
-
-    else:
-        if trade_status["Win"] == 0 and trade_status["Lose"] == 0 :
-            ax.annotate(f'Win Rate: 0%', xy=(20, 370), xycoords='axes pixels', fontsize=12, ha='left', va='top')
-            ax.annotate(f'Total Actions: {trade_actions["Total Actions"]}', xy=(20, 350), xycoords='axes pixels', fontsize=12, ha='left', va='top')
-            ax.annotate(f'Total Profit: {round(total_amount - initial_amount, 2)}$', xy=(20, 330), xycoords='axes pixels', fontsize=12, ha='left', va='top')
-            ax.annotate(f'Total Amount: {round(total_amount, 2)}$', xy=(20, 310), xycoords='axes pixels', fontsize=12, ha='left', va='top')
-        else:
-            ax.annotate(f'Win Rate: {round((trade_status["Win"] / (trade_status["Win"] + trade_status["Lose"])) * 100, 2)}%', xy=(20, 370), xycoords='axes pixels', fontsize=12, ha='left', va='top')
-            ax.annotate(f'Total Actions: {trade_actions["Total Actions"]}', xy=(20, 350), xycoords='axes pixels', fontsize=12, ha='left', va='top')
-            ax.annotate(f'Total Profit: {round(total_amount - initial_amount, 2)}$', xy=(20, 330), xycoords='axes pixels', fontsize=12, ha='left', va='top')
-            ax.annotate(f'Total Amount: {round(total_amount, 2)}$', xy=(20, 310), xycoords='axes pixels', fontsize=12, ha='left', va='top')
-
-    return fig
+    return fig, trade_actions, trade_status, total_amount
