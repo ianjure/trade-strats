@@ -74,9 +74,9 @@ if predict_btn:
         stock_name = stock.info['shortName']
         stock_ticker = stock.info['symbol']
         stock = stock.history(period="max")
-        stock_processed = preprocess(stock)
-        transition_matrix = create_transition_matrix(stock_processed)
-        st.dataframe(transition_matrix)
+        #stock_processed = preprocess(stock)
+        #transition_matrix = create_transition_matrix(stock_processed)
+        #st.dataframe(transition_matrix)
 
         if verbose == "True":
             run_simulation(amount=amount, premium=premium, shares=shares, stock=stock, threshold=threshold, interval=interval, verbose=True)
