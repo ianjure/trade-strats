@@ -3,8 +3,7 @@ import streamlit as st
 st.title("Main Menu")
 
 pg = st.navigation([
-    st.Page("main_app.py", title="Main Menu", icon="🔥"),
-    st.Page("markov/markov_app.py", title="Markov", icon="🔥"),
-    st.Page("mean-reversion/meanrev_app.py", title="Mean Reversion", icon="🔥")
+    st.page_link("main_app.py", label="Home", icon="🏠")
+    st.page_link("markov/markov_app.py", label="Markov", icon="1️⃣")
+    st.page_link("mean-reversion/meanrev_app.py", label="Mean Reversion", icon="🔥")
 ])
-pg.run()
