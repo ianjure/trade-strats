@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.header("Main Menu")
+st.title("Main Menu")
 
 pg = st.navigation([
     st.Page("main_app.py", title="Main Menu", icon="🔥"),
