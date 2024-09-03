@@ -104,7 +104,6 @@ def run_simulation(amount, premium, shares, stock, threshold, interval="1d", ver
 
     # Initialize the plot
     plt.figure(figsize = (20, 5), facecolor='white')
-    plt.title(f"{ticker} Stock Price", fontsize=20, color='black')
     plt.plot(stock["Close"])
 
 
