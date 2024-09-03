@@ -1,3 +1,3 @@
 import streamlit as st
 
-st.header("Mean Reversion")
+st.title("Mean Reversion")
