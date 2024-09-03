@@ -5,17 +5,6 @@ from markov_functions import preprocess, create_transition_matrix, run_simulatio
 
 # PAGE CONFIGURATIONS
 st.title("Markov Trading")
-top = """
-    <style>
-    .block-container {
-        padding-top: 5rem;
-        padding-bottom: 5rem;
-        margin-top: 0rem;
-    }
-    </style>
-    """
-st.markdown(top, unsafe_allow_html=True)
-
 hide = """
     <style>
     #MainMenu {visibility: hidden;}
