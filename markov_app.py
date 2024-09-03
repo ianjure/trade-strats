@@ -3,7 +3,27 @@ import yfinance as yf
 from streamlit_extras.stylable_container import stylable_container
 from markov_functions import preprocess, create_transition_matrix, run_simulation
 
+# PAGE CONFIGURATIONS
 st.title("Markov Trading")
+top = """
+    <style>
+    .block-container {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+        margin-top: 0rem;
+    }
+    </style>
+    """
+st.markdown(top, unsafe_allow_html=True)
+
+hide = """
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    </style>
+    """
+st.markdown(hide, unsafe_allow_html=True)
 
 # GET ALL TICKER SYMBOLS
 text = open("assets/stocks_clean.txt", "r")
@@ -25,7 +45,7 @@ with c2:
     interval = st.selectbox("CHOOSE AN INTERVAL", ("1d", "2d", "5d", "10d"))
     
 with c3:
-    shares = st.number_input("INPUT PREMIUM PRICE", value=5, step=1)
+    shares = st.number_input("INPUT NUMBER OF SHARES", value=5, step=1)
     verbose = st.selectbox("SHOW ALL INFO", ("True", "False"))
         
 with col1:
