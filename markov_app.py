@@ -73,13 +73,9 @@ if predict_btn:
         stock = yf.Ticker(ticker)
         stock_name = stock.info['shortName']
         stock_ticker = stock.info['symbol']
-        stock_ = stock.history(period="max")
-        stock_processed = preprocess(stock_)
-        transition_matrix = create_transition_matrix(stock_processed)
-        st.dataframe(transition_matrix)
+        stock = stock.history(period="max")
 
         if verbose == "True":
-            stock = stock.history(period="max")
             fig, actions, status, total_amount = run_simulation(amount=amount, premium=premium, shares=shares, stock=stock, threshold=threshold, interval=interval)
             st.pyplot(fig)
             st.write(f'Buy: {actions["Buy"]}')
@@ -95,7 +91,6 @@ if predict_btn:
                 st.write(f'Total Profit: {round(total_amount - amount, 2)}$')
                 st.write(f'Total Amount: {round(total_amount, 2)}$')
         else:
-            stock = stock.history(period="max")
             fig, actions, status, total_amount = run_simulation(amount=amount, premium=premium, shares=shares, stock=stock, threshold=threshold, interval=interval)
             st.pyplot(fig)
             if status["Win"] == 0 and status["Lose"] == 0:
