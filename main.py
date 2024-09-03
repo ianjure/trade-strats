@@ -2,18 +2,18 @@ import streamlit as st
 
 # --- PAGE SETUP ---
 home_page = st.Page(
-    "home/home.py",
+    "home.py",
     title="Home",
     icon=":material/account_circle:",
     default=True,
 )
 markov_page = st.Page(
-    "markov/markov_app.py",
+    "markov_app.py",
     title="Markov",
     icon=":material/bar_chart:",
 )
 meanrev_page = st.Page(
-    "mean-reversion/meanrev_app.py",
+    "meanrev_app.py",
     title="Mean Reversion",
     icon=":material/smart_toy:",
 )
