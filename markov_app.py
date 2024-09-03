@@ -80,9 +80,31 @@ if predict_btn:
 
         if verbose == "True":
             stock = stock.history(period="max")
-            fig = run_simulation(amount=amount, premium=premium, shares=shares, stock=stock, threshold=threshold, interval=interval, verbose=True)
+            fig, actions, status, total_amount = run_simulation(amount=amount, premium=premium, shares=shares, stock=stock, threshold=threshold, interval=interval)
             st.pyplot(fig)
+            st.write(f'Buy: {actions["Buy"]}')
+            st.write(f'Hold: {actions["Hold"]}')
+            st.write(f'Sell: {actions["Sell"]}')
+            st.write(f'Total Actions: {actions["Total Actions"]}')
+            if status["Win"] == 0 and status["Lose"] == 0:
+                st.write('Win Rate: 0%')
+                st.write(f'Total Profit: {round(total_amount - amount, 2)}$')
+                st.write(f'Total Amount: {round(total_amount, 2)}$')
+            else:
+                st.write(f'Win Rate: {round((status["Win"] / (status["Win"] + status["Lose"])) * 100, 2)}%')
+                st.write(f'Total Profit: {round(total_amount - amount, 2)}$')
+                st.write(f'Total Amount: {round(total_amount, 2)}$')
         else:
             stock = stock.history(period="max")
-            fig = run_simulation(amount=amount, premium=premium, shares=shares, stock=stock, threshold=threshold, interval=interval, verbose=False)
+            fig, actions, status, total_amount = run_simulation(amount=amount, premium=premium, shares=shares, stock=stock, threshold=threshold, interval=interval)
             st.pyplot(fig)
+            if status["Win"] == 0 and status["Lose"] == 0:
+                st.write('Win Rate: 0%')
+                st.write(f'Total Actions: {actions["Total Actions"]}')
+                st.write(f'Total Profit: {round(total_amount - amount, 2)}$')
+                st.write(f'Total Amount: {round(total_amount, 2)}$')
+            else:
+                st.write(f'Win Rate: {round((status["Win"] / (status["Win"] + status["Lose"])) * 100, 2)}%')
+                st.write(f'Total Actions: {actions["Total Actions"]}')
+                st.write(f'Total Profit: {round(total_amount - amount, 2)}$')
+                st.write(f'Total Amount: {round(total_amount, 2)}$')
