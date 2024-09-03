@@ -7,7 +7,6 @@ from markov_functions import preprocess, create_transition_matrix, run_simulatio
 st.title("Markov Trading")
 hide = """
     <style>
-    #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
     </style>
