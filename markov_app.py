@@ -73,14 +73,16 @@ if predict_btn:
         stock = yf.Ticker(ticker)
         stock_name = stock.info['shortName']
         stock_ticker = stock.info['symbol']
-        stock = stock.history(period="max")
-        stock_processed = preprocess(stock)
+        stock_ = stock.history(period="max")
+        stock_processed = preprocess(stock_)
         transition_matrix = create_transition_matrix(stock_processed)
         st.dataframe(transition_matrix)
 
         if verbose == "True":
+            stock = stock.history(period="max")
             fig = run_simulation(amount=amount, premium=premium, shares=shares, stock=stock, threshold=threshold, interval=interval, verbose=True)
             st.pyplot(fig)
         else:
+            stock = stock.history(period="max")
             fig = run_simulation(amount=amount, premium=premium, shares=shares, stock=stock, threshold=threshold, interval=interval, verbose=False)
             st.pyplot(fig)
