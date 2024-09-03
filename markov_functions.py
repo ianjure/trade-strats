@@ -1,4 +1,3 @@
-import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -268,4 +267,4 @@ def run_simulation(amount, premium, shares, stock, threshold, interval="1d", ver
             ax.annotate(f'Total Profit: {round(total_amount - initial_amount, 2)}$', xy=(20, 330), xycoords='axes pixels', fontsize=12, ha='left', va='top')
             ax.annotate(f'Total Amount: {round(total_amount, 2)}$', xy=(20, 310), xycoords='axes pixels', fontsize=12, ha='left', va='top')
 
-    return st.pyplot(fig)
+    return fig
