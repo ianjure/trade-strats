@@ -17,15 +17,15 @@ with st.container(border=True):
     col1, col2 = st.columns(2)
 
 with c1:
-    amount = st.number_input("INPUT INITIAL INVESTMENT", value=int)
-    threshold = st.number_input("INPUT THRESHOLD", value=float, min_value=0.01, max_value=1.00)
+    amount = st.number_input("INPUT INITIAL INVESTMENT", value=100)
+    threshold = st.number_input("INPUT THRESHOLD", value=0.45, min_value=0.01, max_value=1.00)
 
 with c2:
-    premium = st.number_input("INPUT PREMIUM PRICE", value=int)
+    premium = st.number_input("INPUT PREMIUM PRICE", value=5)
     interval = st.selectbox("CHOOSE AN INTERVAL", ("1d", "2d", "5d", "10d"))
     
 with c3:
-    shares = st.number_input("INPUT PREMIUM PRICE", value=int, step=int)
+    shares = st.number_input("INPUT PREMIUM PRICE", value=5, step=1)
     verbose = st.selectbox("SHOW ALL INFO", ("True", "False"))
         
 with col1:
