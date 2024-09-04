@@ -24,27 +24,27 @@ text.close()
 
 # MAIN UI
 with st.container(border=True):
-    tickers = st.selectbox("SELECT A STOCK", all_stocks)
+    tickers = st.selectbox("**STOCK**", all_stocks)
     c1, c2, c3 = st.columns(3)
     col1, col2 = st.columns(2)
 
 with c1:
-    amount = st.number_input("INPUT INITIAL INVESTMENT", value=100)
-    threshold = st.number_input("INPUT THRESHOLD", value=0.45, min_value=0.01, max_value=1.00)
+    amount = st.number_input("INITIAL AMOUNT", value=100)
+    threshold = st.number_input("THRESHOLD", value=0.45, min_value=0.01, max_value=1.00)
 
 with c2:
-    premium = st.number_input("INPUT PREMIUM PRICE", value=5)
+    premium = st.number_input("PREMIUM PRICE", value=5)
     interval = st.selectbox("CHOOSE AN INTERVAL", ("1d", "2d", "5d", "10d"))
     
 with c3:
-    shares = st.number_input("INPUT NUMBER OF SHARES", value=5, step=1)
+    shares = st.number_input("SHARES PER OPTION", value=5, step=1)
     verbose = st.selectbox("SHOW ALL INFO", ("True", "False"))
         
 with col1:
     chart_btn = st.button("**SHOW INFO**", type="secondary", use_container_width=True)
         
 with col2:
-    predict_btn = st.button("SIMULATE RETURNS", type="primary", use_container_width=True)
+    sim_btn = st.button("**SIMULATE RETURNS**", type="primary", use_container_width=True)
 
 if chart_btn:
     with st.spinner('Fetching stock information...'):
@@ -70,7 +70,7 @@ if chart_btn:
         st.dataframe(stock.tail(), use_container_width=True)
         st.line_chart(data=stock, x=None, y='Close', x_label='Years', y_label='Price', use_container_width=True)
 
-if predict_btn:
+if sim_btn:
     with st.spinner('Calculating state probabilities...'):
         ticker = tickers.split("-")[0].replace(" ", "")
         stock = yf.Ticker(ticker)
