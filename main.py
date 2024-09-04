@@ -4,17 +4,18 @@ import streamlit as st
 home_page = st.Page(
     "home.py",
     title="Home",
+    icon=":material/home:"
     default=True,
 )
 markov_page = st.Page(
     "markov_app.py",
     title="Markov Chain",
-    icon=":material/bar_chart:",
+    icon=":material/link:",
 )
 meanrev_page = st.Page(
     "meanrev_app.py",
     title="Mean Reversion",
-    icon=":material/smart_toy:",
+    icon=":material/history:",
 )
 
 # --- NAVIGATION SETUP [WITH SECTIONS]---
