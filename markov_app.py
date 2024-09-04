@@ -29,16 +29,16 @@ with st.container(border=True):
     col1, col2 = st.columns(2)
 
 with c1:
-    amount = st.number_input("INITIAL AMOUNT", value=100)
-    threshold = st.number_input("THRESHOLD", value=0.45, min_value=0.01, max_value=1.00)
+    amount = st.number_input("**INITIAL AMOUNT**", value=100)
+    threshold = st.number_input("**THRESHOLD**", value=0.45, min_value=0.01, max_value=1.00)
 
 with c2:
-    premium = st.number_input("PREMIUM PRICE", value=5)
-    interval = st.selectbox("CHOOSE AN INTERVAL", ("1d", "2d", "5d", "10d"))
+    premium = st.number_input("**PREMIUM PRICE**", value=5)
+    interval = st.selectbox("**TRADE INTERVAL**", ("1d", "2d", "5d", "10d"))
     
 with c3:
-    shares = st.number_input("SHARES PER OPTION", value=5, step=1)
-    verbose = st.selectbox("SHOW ALL INFO", ("True", "False"))
+    shares = st.number_input("**SHARES PER OPTION**", value=5, step=1)
+    verbose = st.checkbox("**SHOW ALL INFO**")
         
 with col1:
     chart_btn = st.button("**SHOW INFO**", type="secondary", use_container_width=True)
@@ -78,7 +78,7 @@ if sim_btn:
         stock_ticker = stock.info['symbol']
         stock = stock.history(period="max")
 
-        if verbose == "True":
+        if verbose:
             fig, actions, status, total_amount = run_simulation(amount=amount, premium=premium, shares=shares, stock=stock, threshold=threshold, interval=interval)
             st.pyplot(fig)
             st.write(f'Buy: {actions["Buy"]}')
