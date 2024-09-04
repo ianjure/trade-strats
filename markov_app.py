@@ -4,13 +4,18 @@ from streamlit_extras.stylable_container import stylable_container
 from markov_functions import preprocess, create_transition_matrix, run_simulation
 
 # PAGE CONFIGURATIONS
-st.title("Markov Trading")
 hide = """
     <style>
     footer {visibility: hidden;}
     </style>
     """
 st.markdown(hide, unsafe_allow_html=True)
+
+# TITLE
+st.markdown("<p style='text-align: center; font-size: 3.4rem; font-weight: 800; line-height: 0.8;'>Markov Chain</p>", unsafe_allow_html=True)
+
+# SUBTITLE
+st.markdown("<p style='text-align: center; font-size: 1rem; font-weight: 500; line-height: 1.2;'>A trading algorithm based on Markov probability theory.</p>", unsafe_allow_html=True)
 
 # GET ALL TICKER SYMBOLS
 text = open("assets/stocks_clean.txt", "r")
