@@ -26,19 +26,13 @@ text.close()
 with st.container(border=True):
     tickers = st.selectbox("**STOCK**", all_stocks)
     c1, c2, c3 = st.columns(3)
-    col1, col2 = st.columns(2)
     btn1, btn2 = st.columns(2)
 
 with c1:
     amount = st.number_input("**INITIAL AMOUNT**", value=100)
 with c2:
-    premium = st.number_input("**PREMIUM PRICE**", value=5)
-with c3:
-    shares = st.number_input("**SHARES PER OPTION**", value=5, step=1)
-        
-with col1:
     threshold = st.number_input("**THRESHOLD**", value=0.45, min_value=0.01, max_value=1.00)
-with col2:
+with c3:
     interval = st.selectbox("**TRADE INTERVAL**", ("1d", "2d", "5d", "10d"))
 
 with btn1:
@@ -73,11 +67,9 @@ if sim_btn:
     with st.spinner('Calculating state probabilities...'):
         ticker = tickers.split("-")[0].replace(" ", "")
         stock = yf.Ticker(ticker)
-        stock_name = stock.info['shortName']
-        stock_ticker = stock.info['symbol']
         stock = stock.history(period="max")
 
-        fig, actions, status, total_amount = run_simulation(amount=amount, premium=premium, shares=shares, stock=stock, threshold=threshold, interval=interval)
+        fig, actions, status, total_amount = run_simulation(stock=stock, amount=amount, threshold=threshold, interval=interval)
         
         with st.container(border=True):
             st.pyplot(fig)
