@@ -4,12 +4,11 @@ import streamlit as st
 home_page = st.Page(
     "home.py",
     title="Home",
-    icon=":material/account_circle:",
     default=True,
 )
 markov_page = st.Page(
     "markov_app.py",
-    title="Markov",
+    title="Markov Chain",
     icon=":material/bar_chart:",
 )
 meanrev_page = st.Page(
@@ -21,8 +20,8 @@ meanrev_page = st.Page(
 # --- NAVIGATION SETUP [WITH SECTIONS]---
 pg = st.navigation(
     {
-        "Info": [home_page],
-        "Strategies": [markov_page, meanrev_page],
+        "About": [home_page],
+        "Trading Algorithms": [markov_page, meanrev_page],
     }
 )
 
