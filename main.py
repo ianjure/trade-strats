@@ -1,9 +1,9 @@
 import streamlit as st
 
-# --- PAGE SETUP ---
-home_page = st.Page(
-    "home.py",
-    title="Home",
+# PAGE SETUP
+about_page = st.Page(
+    "about.py",
+    title="About",
     icon=":material/home:",
     default=True,
 )
@@ -18,13 +18,13 @@ meanrev_page = st.Page(
     icon=":material/history:",
 )
 
-# --- NAVIGATION SETUP [WITH SECTIONS]---
+# NAVIGATION SETUP
 pg = st.navigation(
     {
-        "About": [home_page],
+        "Home": [about_page],
         "Trading Algorithms": [markov_page, meanrev_page],
     }
 )
 
-# --- RUN NAVIGATION ---
+# RUN NAVIGATION
 pg.run()
