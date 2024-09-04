@@ -4,7 +4,7 @@ import streamlit as st
 home_page = st.Page(
     "home.py",
     title="Home",
-    icon=":material/home:"
+    icon=":material/home:",
     default=True,
 )
 markov_page = st.Page(
