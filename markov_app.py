@@ -52,13 +52,10 @@ if chart_btn:
             
         with st.container(border=True):
             info_1, info_2 = st.columns(2)
-                
-        with info_1:
-            st.write(f"**Company Name:** {stock_name}")
-            st.write(f"**Website:** {stock_website}")
-        with info_2:
-            st.write(f"**Sector:** {stock_sector}")
-            st.write(f"**Industry:** {stock_industry}")
+            info_1.write(f"**Company Name:** {stock_name}")
+            info_1.write(f"**Website:** {stock_website}")
+            info_2.write(f"**Sector:** {stock_sector}")
+            info_2.write(f"**Industry:** {stock_industry}")
                 
         st.dataframe(stock.tail(), use_container_width=True)
         st.line_chart(data=stock, x=None, y='Close', x_label='Years', y_label='Price', use_container_width=True)
@@ -76,28 +73,16 @@ if sim_btn:
         
         with st.container(border=True):
             buy_col, hold_col, sell_col, total_col = st.columns(4)
+            buy_col.metric("Buy", f"{actions["Buy"]}")
+            hold_col.metric("Hold", f"{actions["Hold"]}")
+            sell_col.metric("Sell", f"{actions["Sell"]}")
+            total_col.metric("Total Actions", f"{actions["Total Actions"]}")
             wr_col, profit_col, amount_col = st.columns(3)
 
-        with buy_col:
-            st.write(f'Buy: {actions["Buy"]}')
-        with hold_col:
-            st.write(f'Hold: {actions["Hold"]}')
-        with sell_col:
-            st.write(f'Sell: {actions["Sell"]}')
-        with total_col:
-            st.write(f'Total Actions: {actions["Total Actions"]}')
-
-        if status["Win"] == 0 and status["Lose"] == 0:
-            with wr_col:
-                st.write('Win Rate: 0%')
-            with profit_col:
-                st.write(f'Total Profit: {round(total_amount - amount, 2)}$')
-            with amount_col:
-                st.write(f'Total Amount: {round(total_amount, 2)}$')
-        else:
-            with wr_col:
-                st.write(f'Win Rate: {round((status["Win"] / (status["Win"] + status["Lose"])) * 100, 2)}%')
-            with profit_col:
-                st.write(f'Total Profit: {round(total_amount - amount, 2)}$')
-            with amount_col:
-                st.write(f'Total Amount: {round(total_amount, 2)}$')
+            if status["Win"] == 0 and status["Lose"] == 0:
+                wr_col.metric("Win Rate", "0%")
+            else:
+                wr_col.metric("Win Rate", f"{round((status["Win"] / (status["Win"] + status["Lose"])) * 100, 2)}%")
+                
+            profit_col.metric("Total Profit", f"{round(total_amount - amount, 2)}$")
+            amount_col.metric("Total Amount", f"{round(total_amount, 2)}$")
