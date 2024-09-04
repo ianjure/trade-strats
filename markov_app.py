@@ -27,22 +27,23 @@ with st.container(border=True):
     tickers = st.selectbox("**STOCK**", all_stocks)
     c1, c2, c3 = st.columns(3)
     col1, col2 = st.columns(2)
+    btn1, btn2 = st.columns(2)
 
 with c1:
     amount = st.number_input("**INITIAL AMOUNT**", value=100)
-
 with c2:
     premium = st.number_input("**PREMIUM PRICE**", value=5)
-    
 with c3:
     shares = st.number_input("**SHARES PER OPTION**", value=5, step=1)
         
 with col1:
     threshold = st.number_input("**THRESHOLD**", value=0.45, min_value=0.01, max_value=1.00)
-    chart_btn = st.button("**SHOW INFO**", type="secondary", use_container_width=True)
-        
 with col2:
     interval = st.selectbox("**TRADE INTERVAL**", ("1d", "2d", "5d", "10d"))
+
+with btn1:
+    chart_btn = st.button("**SHOW INFO**", type="secondary", use_container_width=True)
+with btn2:
     sim_btn = st.button("**SIMULATE RETURNS**", type="primary", use_container_width=True)
 
 if chart_btn:
@@ -61,7 +62,6 @@ if chart_btn:
         with info_1:
             st.write(f"**Company Name:** {stock_name}")
             st.write(f"**Website:** {stock_website}")
-                
         with info_2:
             st.write(f"**Sector:** {stock_sector}")
             st.write(f"**Industry:** {stock_industry}")
@@ -78,7 +78,9 @@ if sim_btn:
         stock = stock.history(period="max")
 
         fig, actions, status, total_amount = run_simulation(amount=amount, premium=premium, shares=shares, stock=stock, threshold=threshold, interval=interval)
-        st.pyplot(fig)
+        
+        with st.container(border=True):
+            st.pyplot(fig)
         
         with st.container(border=True):
             buy_col, hold_col, sell_col, total_col = st.columns(4)
