@@ -68,7 +68,7 @@ def create_transition_matrix(stock):
 
     return transition_matrix
 
-def run_simulation(amount, premium, shares, stock, threshold, interval="1d"):
+def run_simulation(stock, amount, threshold, interval="1d"):
     # Initialize trading variables
     initial_amount = amount
     total_amount = amount
@@ -88,7 +88,6 @@ def run_simulation(amount, premium, shares, stock, threshold, interval="1d"):
     # Initialize the plot
     fig, ax = plt.subplots(figsize = (20, 5))
     ax.plot(stock["Close"])
-
 
     # Create a dictionary for trade actions
     trade_actions = {
@@ -117,9 +116,10 @@ def run_simulation(amount, premium, shares, stock, threshold, interval="1d"):
         raise ValueError("Invalid interval. Must be 1d, 2d, 5d, or 10d.")
 
     for i in range(50, stock.shape[0], interval):
+        # Define a range for the transition matrix
         train = stock.iloc[0:i].copy()
 
-        # Create transition matrix
+        # Create the transition matrix
         transition_matrix = create_transition_matrix(train)
 
         # Get the current state
@@ -128,94 +128,89 @@ def run_simulation(amount, premium, shares, stock, threshold, interval="1d"):
         # Get the probability of the transition from current to future state
         prob = transition_matrix.loc[current_state]
 
-        # Check if the maximum probability of is higher than the threshold
+        # Check if the maximum probability is higher than the threshold
         if max(prob) >= threshold:
 
             # Get the index of the maximum probability
             max_prob = prob.idxmax()
 
-            # Draw trade lines, increment trade actions and status, and calculate the profit
+            # Draw trade lines, increment trade actions/status, and calculate the loss/profit
             if max_prob == "Up":
-
-                # Action: Buy or Call Option
+                # Action: Buy
                 trade_actions["Buy"] += 1
                 trade_actions["Total Actions"] += 1
 
-                if np.isnan(stock.shift(-1).iloc[-2]["Open"]):
+                # Get current day's closing price
+                buying_price = train.iloc[-1]["Close"]
+
+                # Get tomorrow's closing price
+                if i != stock.shape[0]:
+                    market_price = stock.iloc[i]["Close"]
+                else:
                     continue
 
-                # Get today's closing price
-                buying_price = stock.iloc[i]["Close"]
-
-                # Get tomorrow's opening price
-                market_price = stock.shift(-1).iloc[-2]["Open"]
-
                 # Check if it is a losing or a winning trade
-                if market_price < buying_price:
+                if buying_price > market_price:
 
-                    # In a Call Option: Market Price < Buying Price is a losing trade
+                    # Buying Price > Market Price (Selling Price) is a losing trade
                     ax.axvline(x=train.index[-1], color = 'r', lw=0.5)
 
-                    # Pay for the premium
-                    total_amount = total_amount - (premium * shares)
+                    # Calculate the loss
+                    trade_loss = buying_price - market_price
+                    total_amount = total_amount - trade_loss
 
                     # Update trade status
                     trade_status["Lose"] += 1
 
                 else:
-                    # In a Call Option: Market Price > Buying Price is a winning trade
+                    # Buying Price < Market Price (Selling Price) is a winning trade
                     ax.axvline(x=train.index[-1], color = 'g', lw=0.5)
 
                     # Calculate the profit
-                    gross_profit = market_price - buying_price
-                    net_profit = gross_profit - premium
-                    trade_profit = net_profit * shares
+                    trade_profit = market_price - buying_price
                     total_amount = total_amount + trade_profit
 
                     # Update trade status
                     trade_status["Win"] += 1
 
             elif max_prob == "Neutral":
-
                 # Action: Hold or None
                 trade_actions["Hold"] += 1
                 trade_actions["Total Actions"] += 1
 
             elif max_prob == "Down":
-
-                # Action: Sell or Put Option
+                # Action: Sell
                 trade_actions["Sell"] += 1
                 trade_actions["Total Actions"] += 1
 
-                if np.isnan(stock.shift(-1).iloc[-2]["Open"]):
+                # Get current day's closing price
+                selling_price = train.iloc[-1]["Close"]
+
+                # Get tomorrow's closing price
+                if i != stock.shape[0]:
+                    market_price = stock.iloc[i]["Close"]
+                else:
                     continue
 
-                # Get today's closing price
-                selling_price = stock.iloc[i]["Close"]
-
-                # Get tomorrow's opening price
-                market_price = stock.shift(-1).iloc[-2]["Open"]
-
                 # Check if it is a losing or a winning trade
-                if market_price > selling_price:
+                if selling_price < market_price:
 
-                    # In a Put Option: Market Price > Selling Price is a losing trade
+                    # Selling Price < Market Price (Buying Price) is a losing trade
                     ax.axvline(x=train.index[-1], color = 'r', lw=0.5)
 
-                    # Pay for the premium
-                    total_amount = total_amount - (premium * shares)
+                    # Calculate the loss
+                    trade_loss = market_price - selling_price
+                    total_amount = total_amount - trade_loss
 
                     # Update trade status
                     trade_status["Lose"] += 1
 
                 else:
-                    # In a Put Option: Market Price < Selling Price is a winning trade
+                    # Selling Price > Market Price (Buying Price) is a winning trade
                     ax.axvline(x=train.index[-1], color = 'g', lw=0.5)
 
                     # Calculate the profit
-                    gross_profit = selling_price - market_price
-                    net_profit = gross_profit - premium
-                    trade_profit = net_profit * shares
+                    trade_profit = selling_price - market_price
                     total_amount = total_amount + trade_profit
 
                     # Update trade status
