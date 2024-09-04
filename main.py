@@ -22,7 +22,7 @@ meanrev_page = st.Page(
 pg = st.navigation(
     {
         "Home": [about_page],
-        "Trading Algorithms": [markov_page, meanrev_page],
+        "Algorithms": [markov_page, meanrev_page],
     }
 )
 
