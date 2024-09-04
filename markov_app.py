@@ -30,20 +30,19 @@ with st.container(border=True):
 
 with c1:
     amount = st.number_input("**INITIAL AMOUNT**", value=100)
-    threshold = st.number_input("**THRESHOLD**", value=0.45, min_value=0.01, max_value=1.00)
 
 with c2:
     premium = st.number_input("**PREMIUM PRICE**", value=5)
-    interval = st.selectbox("**TRADE INTERVAL**", ("1d", "2d", "5d", "10d"))
     
 with c3:
     shares = st.number_input("**SHARES PER OPTION**", value=5, step=1)
-    verbose = st.checkbox("**SHOW ALL INFO**")
         
 with col1:
+    threshold = st.number_input("**THRESHOLD**", value=0.45, min_value=0.01, max_value=1.00)
     chart_btn = st.button("**SHOW INFO**", type="secondary", use_container_width=True)
         
 with col2:
+    interval = st.selectbox("**TRADE INTERVAL**", ("1d", "2d", "5d", "10d"))
     sim_btn = st.button("**SIMULATE RETURNS**", type="primary", use_container_width=True)
 
 if chart_btn:
@@ -78,31 +77,17 @@ if sim_btn:
         stock_ticker = stock.info['symbol']
         stock = stock.history(period="max")
 
-        if verbose:
-            fig, actions, status, total_amount = run_simulation(amount=amount, premium=premium, shares=shares, stock=stock, threshold=threshold, interval=interval)
-            st.pyplot(fig)
-            st.write(f'Buy: {actions["Buy"]}')
-            st.write(f'Hold: {actions["Hold"]}')
-            st.write(f'Sell: {actions["Sell"]}')
-            st.write(f'Total Actions: {actions["Total Actions"]}')
-            if status["Win"] == 0 and status["Lose"] == 0:
-                st.write('Win Rate: 0%')
-                st.write(f'Total Profit: {round(total_amount - amount, 2)}$')
-                st.write(f'Total Amount: {round(total_amount, 2)}$')
-            else:
-                st.write(f'Win Rate: {round((status["Win"] / (status["Win"] + status["Lose"])) * 100, 2)}%')
-                st.write(f'Total Profit: {round(total_amount - amount, 2)}$')
-                st.write(f'Total Amount: {round(total_amount, 2)}$')
+        fig, actions, status, total_amount = run_simulation(amount=amount, premium=premium, shares=shares, stock=stock, threshold=threshold, interval=interval)
+        st.pyplot(fig)
+        st.write(f'Buy: {actions["Buy"]}')
+        st.write(f'Hold: {actions["Hold"]}')
+        st.write(f'Sell: {actions["Sell"]}')
+        st.write(f'Total Actions: {actions["Total Actions"]}')
+        if status["Win"] == 0 and status["Lose"] == 0:
+            st.write('Win Rate: 0%')
+            st.write(f'Total Profit: {round(total_amount - amount, 2)}$')
+            st.write(f'Total Amount: {round(total_amount, 2)}$')
         else:
-            fig, actions, status, total_amount = run_simulation(amount=amount, premium=premium, shares=shares, stock=stock, threshold=threshold, interval=interval)
-            st.pyplot(fig)
-            if status["Win"] == 0 and status["Lose"] == 0:
-                st.write('Win Rate: 0%')
-                st.write(f'Total Actions: {actions["Total Actions"]}')
-                st.write(f'Total Profit: {round(total_amount - amount, 2)}$')
-                st.write(f'Total Amount: {round(total_amount, 2)}$')
-            else:
-                st.write(f'Win Rate: {round((status["Win"] / (status["Win"] + status["Lose"])) * 100, 2)}%')
-                st.write(f'Total Actions: {actions["Total Actions"]}')
-                st.write(f'Total Profit: {round(total_amount - amount, 2)}$')
-                st.write(f'Total Amount: {round(total_amount, 2)}$')
+            st.write(f'Win Rate: {round((status["Win"] / (status["Win"] + status["Lose"])) * 100, 2)}%')
+            st.write(f'Total Profit: {round(total_amount - amount, 2)}$')
+            st.write(f'Total Amount: {round(total_amount, 2)}$')
