@@ -1,6 +1,5 @@
 import streamlit as st
 import yfinance as yf
-from streamlit_extras.stylable_container import stylable_container
 from markov_functions import preprocess, create_transition_matrix, run_simulation
 
 # PAGE CONFIGURATIONS
