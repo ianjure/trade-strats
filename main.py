@@ -8,12 +8,12 @@ about_page = st.Page(
     default=True,
 )
 markov_page = st.Page(
-    "markov_app.py",
+    "markovchain.py",
     title="Markov Chain",
     icon=":material/link:",
 )
 meanrev_page = st.Page(
-    "meanrev_app.py",
+    "meanreversion.py",
     title="Mean Reversion",
     icon=":material/history:",
 )
