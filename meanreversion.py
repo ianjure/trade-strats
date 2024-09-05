@@ -69,7 +69,7 @@ if sim_btn:
             sell_col.metric("Sell", f"{actions["Sell"]}")
             total_col.metric("Total Actions", f"{actions["Total Actions"]}")
           
-            te_col, eq_col, rio_col = st.columns(3)
+            te_col, eq_col, roi_col = st.columns(3)
             te_col.metric("Total Earnings", f"{total_earnings}$")
             eq_col.metric("Total Amound", f"{equity}$")
             roi_col.metric("Return on Investment", f"{ROI}%")
