@@ -1,6 +1,6 @@
 import streamlit as st
 import yfinance as yf
-from markov_functions import preprocess, create_transition_matrix, run_simulation
+from markovchain_functions import preprocess, create_transition_matrix, run_simulation
 
 # PAGE CONFIGURATIONS
 hide = """
