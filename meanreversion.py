@@ -53,7 +53,7 @@ if chart_btn:
         st.line_chart(data=stock, x=None, y='Close', x_label='Years', y_label='Price', use_container_width=True)
 
 if sim_btn:
-    with st.spinner('Calculating state probabilities...'):
+    with st.spinner('Calculating expected returns...'):
         ticker = tickers.split("-")[0].replace(" ", "")
         stock = yf.Ticker(ticker)
         stock = stock.history(period="max")
