@@ -65,9 +65,9 @@ if sim_btn:
         
         with st.container(border=True):
             buy_col, sell_col, total_col = st.columns(3)
-            buy_col.metric("Buy", f"{actions["Buy"]}")
-            sell_col.metric("Sell", f"{actions["Sell"]}")
-            total_col.metric("Total Actions", f"{actions["Total Actions"]}")
+            buy_col.metric("Buy", f"{actions['Buy']}")
+            sell_col.metric("Sell", f"{actions['Sell']}")
+            total_col.metric("Total Actions", f"{actions['Total Actions']}")
           
             te_col, eq_col, roi_col = st.columns(3)
             te_col.metric("Total Earnings", f"{total_earnings}$")
