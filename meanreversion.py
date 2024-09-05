@@ -1,4 +1,6 @@
 import streamlit as st
+import yfinance as yf
+from streamlit_extras.stylable_container import stylable_container
 from meanreversion_functions import preprocess, run_simulation
 
 # TITLE
