@@ -72,7 +72,8 @@ if sim_btn:
         
         buy_col, hold_col, sell_col, total_col = st.columns(4)
         with st.container(border=True):
-            buy_col.metric("Buy", f"{actions['Buy']}")
+            with buy_col:
+                st.metric("Buy", f"{actions['Buy']}")
         with st.container(border=True):
             hold_col.metric("Hold", f"{actions['Hold']}")
         with st.container(border=True):
@@ -80,7 +81,7 @@ if sim_btn:
         with st.container(border=True):
             total_col.metric("Total Actions", f"{actions['Total Actions']}")
         
-        wr_col, profit_col, amount_col = st.columns(4)
+        wr_col, profit_col, amount_col = st.columns(3)
         if status["Win"] == 0 and status["Lose"] == 0:
             with st.container(border=True):
                 wr_col.metric("Win Rate", "0%")
