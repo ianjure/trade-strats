@@ -71,13 +71,13 @@ if sim_btn:
             st.pyplot(fig)
         
         with st.container(border=True):
-            buy_col, hold_col, sell_col, total_col = st.columns(4)
+            bl, buy_col, hold_col, sell_col, total_col = st.columns(5)
             buy_col.metric("Buy", f"{actions['Buy']}")
             hold_col.metric("Hold", f"{actions['Hold']}")
             sell_col.metric("Sell", f"{actions['Sell']}")
             total_col.metric("Total Actions", f"{actions['Total Actions']}")
             
-            wr_col, profit_col, amount_col = st.columns(3)
+            bl, wr_col, profit_col, amount_col = st.columns(4)
             if status["Win"] == 0 and status["Lose"] == 0:
                 wr_col.metric("Win Rate", "0%")
             else:
