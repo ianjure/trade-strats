@@ -11,27 +11,6 @@ hide = """
     """
 st.markdown(hide, unsafe_allow_html=True)
 
-st.markdown("""
-<style>
-div[data-testid="metric-container"] {
-   background-color: rgba(28, 131, 225, 0.1);
-   border: 1px solid rgba(28, 131, 225, 0.1);
-   padding: 5% 5% 5% 10%;
-   border-radius: 5px;
-   color: rgb(30, 103, 119);
-   overflow-wrap: break-word;
-}
-
-/* breakline for metric text         */
-div[data-testid="metric-container"] > label[data-testid="stMetricLabel"] > div {
-   overflow-wrap: break-word;
-   white-space: break-spaces;
-   color: red;
-}
-</style>
-"""
-, unsafe_allow_html=True)
-
 # TITLE
 st.markdown("<p style='text-align: center; font-size: 3.4rem; font-weight: 800; line-height: 0.8;'>Markov Chain</p>", unsafe_allow_html=True)
 
@@ -96,7 +75,7 @@ if sim_btn:
         with stylable_container(
             key = "buy_card",
             css_styles = """
-            label[data-testid="stMetricLabel"] {
+            [data-testid="stMetricLabel"] {
                 display: flex;
             }
             div[data-testid="stMetric"] {
