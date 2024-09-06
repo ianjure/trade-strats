@@ -92,7 +92,7 @@ if sim_btn:
             st.pyplot(fig)
 
         buy_col, hold_col, sell_col, total_col = st.columns(4)
-        st.metric("Buy", f"{actions['Buy']}")
+        buy_col.metric("Buy", f"{actions['Buy']}")
         hold_col.metric("Hold", f"{actions['Hold']}")
         sell_col.metric("Sell", f"{actions['Sell']}")
         total_col.metric("Total Actions", f"{actions['Total Actions']}")
