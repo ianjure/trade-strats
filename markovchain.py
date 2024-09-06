@@ -10,6 +10,14 @@ hide = """
     """
 st.markdown(hide, unsafe_allow_html=True)
 
+st.markdown("""
+<style>
+div[data-testid="metric-container"] {
+   border: 1px solid rgba(28, 131, 225, 0.1);
+</style>
+"""
+, unsafe_allow_html=True)
+
 # TITLE
 st.markdown("<p style='text-align: center; font-size: 3.4rem; font-weight: 800; line-height: 0.8;'>Markov Chain</p>", unsafe_allow_html=True)
 
@@ -69,8 +77,9 @@ if sim_btn:
         
         with st.container(border=True):
             st.pyplot(fig)
-        
-        buy_col, hold_col, sell_col, total_col = st.columns(4)
+
+        with st.container(border=True):
+            buy_col, hold_col, sell_col, total_col = st.columns(4)
         with st.container(border=True):
             with buy_col:
                 st.metric("Buy", f"{actions['Buy']}")
