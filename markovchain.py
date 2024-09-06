@@ -40,8 +40,6 @@ with btn1:
 with btn2:
     sim_btn = st.button("**SIMULATE RETURNS**", type="primary", use_container_width=True)
 
-ui.hover_card(label="Hover on me1!", content="I am a hover card1!", content_type="text", key="hover_card_1")
-
 if chart_btn:
     with st.spinner('Fetching stock information...'):
         ticker = tickers.split("-")[0].replace(" ", "")
