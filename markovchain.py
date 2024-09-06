@@ -36,7 +36,6 @@ with c3:
     interval = st.selectbox("**TRADE INTERVAL**", ("1d", "2d", "5d", "10d"))
 
 with btn1:
-    clicked = ui.button("Click", key="clk_btn")
     chart_btn = st.button("**SHOW INFO**", type="secondary", use_container_width=True)
 with btn2:
     sim_btn = st.button("**SIMULATE RETURNS**", type="primary", use_container_width=True)
@@ -72,9 +71,9 @@ if sim_btn:
         with st.container(border=True):
             st.pyplot(fig)
         
-        with st.container(border=True):
-            buy_col, hold_col, sell_col, total_col = st.columns(4)
-            wr_col, profit_col, amount_col = st.columns(3)
+        #with st.container(border=True):
+        buy_col, hold_col, sell_col, total_col = st.columns(4)
+        wr_col, profit_col, amount_col = st.columns(3)
             
         with buy_col:
             ui.metric_card(title="Buy", content=f"{actions['Buy']}", description="", key="buycard")
