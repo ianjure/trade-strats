@@ -81,6 +81,8 @@ if sim_btn:
             ui.metric_card(title="Hold", content=f"{actions['Hold']}", description="", key="holdcard")
         with sell_col:
             ui.metric_card(title="Sell", content=f"{actions['Sell']}", description="", key="sellcard")
+        with total_col:
+            ui.metric_card(title="Total Actions", content=f"{actions['Actions']}", description="", key="tacard")
             """
             buy_col.metric("Buy", f"{actions['Buy']}")
             hold_col.metric("Hold", f"{actions['Hold']}")
