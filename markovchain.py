@@ -13,7 +13,20 @@ st.markdown(hide, unsafe_allow_html=True)
 st.markdown("""
 <style>
 div[data-testid="metric-container"] {
+   background-color: rgba(28, 131, 225, 0.1);
    border: 1px solid rgba(28, 131, 225, 0.1);
+   padding: 5% 5% 5% 10%;
+   border-radius: 5px;
+   color: rgb(30, 103, 119);
+   overflow-wrap: break-word;
+}
+
+/* breakline for metric text         */
+div[data-testid="metric-container"] > label[data-testid="stMetricLabel"] > div {
+   overflow-wrap: break-word;
+   white-space: break-spaces;
+   color: red;
+}
 </style>
 """
 , unsafe_allow_html=True)
@@ -78,26 +91,17 @@ if sim_btn:
         with st.container(border=True):
             st.pyplot(fig)
 
-        with st.container(border=True):
-            buy_col, hold_col, sell_col, total_col = st.columns(4)
-        with st.container(border=True):
-            with buy_col:
-                st.metric("Buy", f"{actions['Buy']}")
-        with st.container(border=True):
-            hold_col.metric("Hold", f"{actions['Hold']}")
-        with st.container(border=True):
-            sell_col.metric("Sell", f"{actions['Sell']}")
-        with st.container(border=True):
-            total_col.metric("Total Actions", f"{actions['Total Actions']}")
+        buy_col, hold_col, sell_col, total_col = st.columns(4)
+        st.metric("Buy", f"{actions['Buy']}")
+        hold_col.metric("Hold", f"{actions['Hold']}")
+        sell_col.metric("Sell", f"{actions['Sell']}")
+        total_col.metric("Total Actions", f"{actions['Total Actions']}")
         
         wr_col, profit_col, amount_col = st.columns(3)
         if status["Win"] == 0 and status["Lose"] == 0:
-            with st.container(border=True):
-                wr_col.metric("Win Rate", "0%")
+            wr_col.metric("Win Rate", "0%")
         else:
-            with st.container(border=True):
-                wr_col.metric("Win Rate", f"{round((status['Win'] / (status['Win'] + status['Lose'])) * 100, 2)}%")
-        with st.container(border=True):
-            profit_col.metric("Total Profit", f"{round(total_amount - amount, 2)}$")
+            wr_col.metric("Win Rate", f"{round((status['Win'] / (status['Win'] + status['Lose'])) * 100, 2)}%")
+        profit_col.metric("Total Profit", f"{round(total_amount - amount, 2)}$")
         with st.container(border=True):
             amount_col.metric("Total Amount", f"{round(total_amount, 2)}$")
