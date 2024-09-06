@@ -36,6 +36,7 @@ with c3:
     interval = st.selectbox("**TRADE INTERVAL**", ("1d", "2d", "5d", "10d"))
 
 with btn1:
+    clicked = ui.button("Click", key="clk_btn")
     chart_btn = st.button("**SHOW INFO**", type="secondary", use_container_width=True)
 with btn2:
     sim_btn = st.button("**SIMULATE RETURNS**", type="primary", use_container_width=True)
