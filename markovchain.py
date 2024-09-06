@@ -92,7 +92,18 @@ if sim_btn:
             st.pyplot(fig)
 
         buy_col, hold_col, sell_col, total_col = st.columns(4)
-        buy_col.metric("Buy", f"{actions['Buy']}")
+        with stylable_container(
+            key = "buy_card",
+            css_styles = """
+            label[data-testid="stMetricLabel"] {
+                display: flex;
+            }
+            div[data-testid="stMetric"] {
+                text-align: center;
+            }
+            """
+            ):
+            buy_col.metric("Buy", f"{actions['Buy']}")
         hold_col.metric("Hold", f"{actions['Hold']}")
         sell_col.metric("Sell", f"{actions['Sell']}")
         total_col.metric("Total Actions", f"{actions['Total Actions']}")
