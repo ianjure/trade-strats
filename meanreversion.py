@@ -10,6 +10,19 @@ hide = """
     """
 st.markdown(hide, unsafe_allow_html=True)
 
+# DESIGN COMPONENT
+metric = """
+        <style>
+        label[data-testid="stMetricLabel"] {
+            display: flex;
+        }
+        div[data-testid="stMetric"] {
+            text-align: center;
+        }
+        </style>
+        """
+st.markdown(metric, unsafe_allow_html=True)
+
 # TITLE
 st.markdown("<p style='text-align: center; font-size: 3.4rem; font-weight: 800; line-height: 0.8;'>Mean Reversion</p>", unsafe_allow_html=True)
 
