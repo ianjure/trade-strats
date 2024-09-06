@@ -1,6 +1,5 @@
 import streamlit as st
 import yfinance as yf
-from streamlit_extras.stylable_container import stylable_container
 from markovchain_functions import preprocess, create_transition_matrix, run_simulation
 
 # PAGE CONFIGURATIONS
@@ -10,6 +9,18 @@ hide = """
     </style>
     """
 st.markdown(hide, unsafe_allow_html=True)
+
+toast = """
+        <style>
+        label[data-testid="stMetricLabel"] {
+            display: flex;
+        }
+        div[data-testid="stMetric"] {
+            text-align: center;
+        }
+        </style>
+        """
+st.markdown(toast, unsafe_allow_html=True)
 
 # TITLE
 st.markdown("<p style='text-align: center; font-size: 3.4rem; font-weight: 800; line-height: 0.8;'>Markov Chain</p>", unsafe_allow_html=True)
@@ -72,18 +83,7 @@ if sim_btn:
             st.pyplot(fig)
 
         buy_col, hold_col, sell_col, total_col = st.columns(4)
-        with stylable_container(
-            key = "buy_card",
-            css_styles = """
-            [data-testid="stMetricLabel"] {
-                display: flex;
-            }
-            div[data-testid="stMetric"] {
-                text-align: center;
-            }
-            """
-            ):
-            buy_col.metric("Buy", f"{actions['Buy']}")
+        buy_col.metric("Buy", f"{actions['Buy']}")
         hold_col.metric("Hold", f"{actions['Hold']}")
         sell_col.metric("Sell", f"{actions['Sell']}")
         total_col.metric("Total Actions", f"{actions['Total Actions']}")
