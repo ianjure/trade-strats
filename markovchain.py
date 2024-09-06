@@ -1,6 +1,5 @@
 import streamlit as st
 import yfinance as yf
-import streamlit_shadcn_ui as ui
 from markovchain_functions import preprocess, create_transition_matrix, run_simulation
 
 # PAGE CONFIGURATIONS
@@ -71,33 +70,18 @@ if sim_btn:
         with st.container(border=True):
             st.pyplot(fig)
         
-        #with st.container(border=True):
-        buy_col, hold_col, sell_col, total_col = st.columns(4)
-        wr_col, profit_col, amount_col = st.columns(3)
-            
-        with buy_col:
-            ui.metric_card(title="Buy", content=f"{actions['Buy']}", description="", key="buycard")
-        with hold_col:
-            ui.metric_card(title="Hold", content=f"{actions['Hold']}", description="", key="holdcard")
-        with sell_col:
-            ui.metric_card(title="Sell", content=f"{actions['Sell']}", description="", key="sellcard")
-        with total_col:
-            ui.metric_card(title="Total Actions", content=f"{actions['Total Actions']}", description="", key="tacard")
-            """
+        with st.container(border=True):
+            buy_col, hold_col, sell_col, total_col = st.columns(4)
             buy_col.metric("Buy", f"{actions['Buy']}")
             hold_col.metric("Hold", f"{actions['Hold']}")
             sell_col.metric("Sell", f"{actions['Sell']}")
             total_col.metric("Total Actions", f"{actions['Total Actions']}")
-            """
+            wr_col, profit_col, amount_col = st.columns(3)
 
-        if status["Win"] == 0 and status["Lose"] == 0:
-            with wr_col:
-                ui.metric_card(title="Win Rate", content="0%", description="", key="wrcard")
-        else:
-            with wr_col:
-                ui.metric_card(title="Win Rate", content=f"{round((status['Win'] / (status['Win'] + status['Lose'])) * 100, 2)}%", description="", key="wrcard")
+            if status["Win"] == 0 and status["Lose"] == 0:
+                wr_col.metric("Win Rate", "0%")
+            else:
+                wr_col.metric("Win Rate", f"{round((status['Win'] / (status['Win'] + status['Lose'])) * 100, 2)}%")
 
-        with profit_col:
-            ui.metric_card(title="Total Profit", content=f"{round(total_amount - amount, 2)}$", description="", key="prcard")
-        with amount_col:
-            ui.metric_card(title="Total Amount", content=f"{round(total_amount, 2)}$", description="", key="amcard")
+            profit_col.metric("Total Profit", f"{round(total_amount - amount, 2)}$")
+            amount_col.metric("Total Amount", f"{round(total_amount, 2)}$")
