@@ -10,7 +10,8 @@ hide = """
     """
 st.markdown(hide, unsafe_allow_html=True)
 
-toast = """
+# DESIGN COMPONENT
+metric = """
         <style>
         label[data-testid="stMetricLabel"] {
             display: flex;
@@ -20,7 +21,7 @@ toast = """
         }
         </style>
         """
-st.markdown(toast, unsafe_allow_html=True)
+st.markdown(metric, unsafe_allow_html=True)
 
 # TITLE
 st.markdown("<p style='text-align: center; font-size: 3.4rem; font-weight: 800; line-height: 0.8;'>Markov Chain</p>", unsafe_allow_html=True)
@@ -82,13 +83,15 @@ if sim_btn:
         with st.container(border=True):
             st.pyplot(fig)
 
-        buy_col, hold_col, sell_col, total_col = st.columns(4)
+        with st.container(border=True):
+            buy_col, hold_col, sell_col, total_col = st.columns(4)
+            wr_col, profit_col, amount_col = st.columns(3)
+            
         buy_col.metric("Buy", f"{actions['Buy']}")
         hold_col.metric("Hold", f"{actions['Hold']}")
         sell_col.metric("Sell", f"{actions['Sell']}")
         total_col.metric("Total Actions", f"{actions['Total Actions']}")
         
-        wr_col, profit_col, amount_col = st.columns(3)
         if status["Win"] == 0 and status["Lose"] == 0:
             wr_col.metric("Win Rate", "0%")
         else:
