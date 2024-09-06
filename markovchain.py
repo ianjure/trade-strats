@@ -76,12 +76,11 @@ if sim_btn:
             hold_col.metric("Hold", f"{actions['Hold']}")
             sell_col.metric("Sell", f"{actions['Sell']}")
             total_col.metric("Total Actions", f"{actions['Total Actions']}")
+            
             wr_col, profit_col, amount_col = st.columns(3)
-
             if status["Win"] == 0 and status["Lose"] == 0:
                 wr_col.metric("Win Rate", "0%")
             else:
                 wr_col.metric("Win Rate", f"{round((status['Win'] / (status['Win'] + status['Lose'])) * 100, 2)}%")
-
             profit_col.metric("Total Profit", f"{round(total_amount - amount, 2)}$")
             amount_col.metric("Total Amount", f"{round(total_amount, 2)}$")
