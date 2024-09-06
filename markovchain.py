@@ -71,15 +71,23 @@ if sim_btn:
             st.pyplot(fig)
         
         buy_col, hold_col, sell_col, total_col = st.columns(4)
-        buy_col.metric("Buy", f"{actions['Buy']}")
-        hold_col.metric("Hold", f"{actions['Hold']}")
-        sell_col.metric("Sell", f"{actions['Sell']}")
-        total_col.metric("Total Actions", f"{actions['Total Actions']}")
+        with st.container(border=True):
+            buy_col.metric("Buy", f"{actions['Buy']}")
+        with st.container(border=True):
+            hold_col.metric("Hold", f"{actions['Hold']}")
+        with st.container(border=True):
+            sell_col.metric("Sell", f"{actions['Sell']}")
+        with st.container(border=True):
+            total_col.metric("Total Actions", f"{actions['Total Actions']}")
         
         wr_col, profit_col, amount_col = st.columns(4)
         if status["Win"] == 0 and status["Lose"] == 0:
-            wr_col.metric("Win Rate", "0%")
+            with st.container(border=True):
+                wr_col.metric("Win Rate", "0%")
         else:
-            wr_col.metric("Win Rate", f"{round((status['Win'] / (status['Win'] + status['Lose'])) * 100, 2)}%")
-        profit_col.metric("Total Profit", f"{round(total_amount - amount, 2)}$")
-        amount_col.metric("Total Amount", f"{round(total_amount, 2)}$")
+            with st.container(border=True):
+                wr_col.metric("Win Rate", f"{round((status['Win'] / (status['Win'] + status['Lose'])) * 100, 2)}%")
+        with st.container(border=True):
+            profit_col.metric("Total Profit", f"{round(total_amount - amount, 2)}$")
+        with st.container(border=True):
+            amount_col.metric("Total Amount", f"{round(total_amount, 2)}$")
