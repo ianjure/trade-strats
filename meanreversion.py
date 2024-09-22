@@ -3,6 +3,8 @@ import yfinance as yf
 from meanreversion_functions import preprocess, run_simulation
 
 # PAGE CONFIGURATIONS
+st.set_page_config(page_title="Mean Reversion - TradeStrats", page_icon="📈")
+
 hide = """
     <style>
     footer {visibility: hidden;}
