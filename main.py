@@ -3,18 +3,18 @@ import streamlit as st
 # PAGE SETUP
 about_page = st.Page(
     "about.py",
-    title="About",
+    title="TradeStrats",
     icon=":material/home:",
     default=True,
 )
 markov_page = st.Page(
     "markovchain.py",
-    title="Markov Chain",
+    title="Markov Chain - TradeStrats",
     icon=":material/link:",
 )
 meanrev_page = st.Page(
     "meanreversion.py",
-    title="Mean Reversion",
+    title="Mean Reversion - TradeStrats",
     icon=":material/history:",
 )
 
