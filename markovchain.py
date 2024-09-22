@@ -3,6 +3,8 @@ import yfinance as yf
 from markovchain_functions import preprocess, create_transition_matrix, run_simulation
 
 # PAGE CONFIGURATIONS
+st.set_page_config(page_title="Markov Chain - TradeStrats", page_icon="📈")
+
 hide = """
     <style>
     footer {visibility: hidden;}
