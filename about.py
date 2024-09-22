@@ -1,6 +1,8 @@
 import streamlit as st
 
 # PAGE CONFIGURATIONS
+st.set_page_config(page_title="TradeStrats", page_icon="📈")
+
 hide = """
     <style>
     footer {visibility: hidden;}
