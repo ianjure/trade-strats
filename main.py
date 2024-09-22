@@ -9,12 +9,12 @@ about_page = st.Page(
 )
 markov_page = st.Page(
     "markovchain.py",
-    title="Markov Chain - TradeStrats",
+    title="Markov Chain",
     icon=":material/link:",
 )
 meanrev_page = st.Page(
     "meanreversion.py",
-    title="Mean Reversion - TradeStrats",
+    title="Mean Reversion",
     icon=":material/history:",
 )
 
